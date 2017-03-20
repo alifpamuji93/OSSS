@@ -1,0 +1,17 @@
+#welcome{
+	clear:both;
+	margin:50px 0;
+	text-align:center;
+	background-color: #f0f0f0;
+	padding:20px;
+	color:#555555;
+}
+#welcome p{
+	margin:0;
+	text-align:left;
+	background-color: #f0f0f0;
+	padding:9px;
+	color:#555555;
+}
+	
+#welcome img{ width:720px ; height:350px ; }

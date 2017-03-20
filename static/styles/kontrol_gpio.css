@@ -1,0 +1,11 @@
+#kontrol_gpio{
+	clear:both;
+	margin:50px 0;
+	text-align:center;
+	background-color: #f0f0f0;
+	padding:20px;
+	color:#555555;
+}
+
+	
+#kontrol_gpio img{ width:480px ; height:320px ; }

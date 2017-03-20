@@ -1,0 +1,75 @@
+<!DOCTYPE HTML>
+<HTML>
+	<head>
+		<title>Daftar video</title>
+		<link rel="stylesheet" href="static/styles/header.css" />
+		<link rel="stylesheet" href="static/styles/footer.css" />
+		<link rel="stylesheet" href="static/styles/list_video.css" />
+		
+	</head>
+	<body>
+		
+		<div id="wrapper">
+			<img src="static/images/logo.png" alt="logo" />
+			<div id="header">
+				<div id="login">
+					<a href="">Log out</a></li>
+				</div>
+				<ul id="menu-utama">
+					<li><a href="{{ url_for('index') }}">Beranda</a></li>
+					<li><a href="{{ url_for('daftar_video') }}">Daftar video</a></li>
+					<li><a href="{{ url_for('kontrol_gpio') }}">Kontrol GPIO</a></li>
+					<li><a href="{{ url_for('about') }}">About</a></li>
+				</ul>
+			</div><!-- Penutup div "header" -->
+			
+			<div id="bottom_header">
+				<p>:: One Shock Security System Application ::</p>
+			</div><!-- Penutup div "botttom_header" -->
+			
+			<div id="daftar_video">
+				<h1> Daftar 5 video terakhir</h1>
+				<div class="video">
+					<video width="320" height="240" controls>
+					<source src="static/video/Install_windows_7_dengan_flashdisk.mp4" type="video/mp4">
+					<source src="movie.ogg" type="video/ogg">
+					Your browser does not support the video tag.
+				</div>	
+				
+				<div class="video">
+					<video width="320" height="240" controls>
+					<source src="static/video/Install_windows_7_dengan_flashdisk.mp4" type="video/mp4">
+					<source src="movie.ogg" type="video/ogg">
+					Your browser does not support the video tag.
+				</div>
+				
+				<div class="video">
+					<img src="static/images/iconvideo.png" alt="video" />
+					<h3> vid0000011</h3>
+					<b>Feb 12, 2007</b><b>Views : 3,487,497</b>
+					<p>Bill Gates and Steve Jobs square off in the clean white virtual world of the iconic Mac ads</p>
+					<a href="">Putar Video</a>
+				</div><!-- Penutup div "artikel" -->
+				<div class="video">
+					<img src="static/images/iconvideo.png" alt="video" />
+					<h3> vid0000010</h3>
+					<b>Feb 12, 2007</b><b>Views : 3,487,497</b>
+					<p>Bill Gates and Steve Jobs square off in the clean white virtual world of the iconic Mac ads</p>
+					<a href="">Putar Video</a>
+				</div><!-- Penutup div "artikel" -->
+				<div class="video">
+					<img src="static/images/iconvideo.png" alt="video" />
+					<h3> vid0000009</h3>
+					<b>Feb 12, 2007</b><b>Views : 3,487,497</b>
+					<p>Bill Gates and Steve Jobs square off in the clean white virtual world of the iconic Mac ads</p>
+					<a href="">Putar Video</a>
+				</div><!-- Penutup div "artikel" -->
+			</div><!-- Penutup div "daftar_video" -->
+			
+			<div id="footer">
+				<p>Copyright (c) 2017 by alifpamuji93</p>
+			</div>
+		</div><!-- Penutup div "wrapper" -->
+		
+	</body>
+</HTML>
