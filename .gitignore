@@ -87,3 +87,8 @@ ENV/
 
 # Rope project settings
 .ropeproject
+
+
+
+# ignore video
+static/video/

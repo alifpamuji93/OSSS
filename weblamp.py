@@ -42,7 +42,7 @@ def action(changePin, action):
 	templateData = {
 		'message' : message,
 		'pins' : pins
-	}
+	}	
 	
 	return render_template('main.html', **templateData)
 	

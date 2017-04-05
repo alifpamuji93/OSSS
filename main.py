@@ -30,6 +30,10 @@ def daftar_video():
 def kontrol_gpio():
     return render_template('kontrol_gpio.html')
 
+@app.route('/video_streaming')
+def video_streaming():
+    return render_template('video_streaming.html')
+
 def gen(camera):
     while True:
         frame = camera.get_frame()
@@ -40,11 +44,19 @@ def gen(camera):
 def video_feed():
     return Response(gen(VideoCamera()),
                     mimetype='multipart/x-mixed-replace; boundary=frame')
-
+					
 @app.route('/about')
 def about():
-   print 'Hello World!'
-   return render_template('about.html')
+    return render_template('about.html')
+
+@app.route('/gpio_on')
+def gpio_on():
+    return render_template('gpio_on.html')
+
+@app.route('/gpio_off')
+def gpio_off():
+    return render_template('gpio_off.html')
+
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0',port=5000, debug=True)

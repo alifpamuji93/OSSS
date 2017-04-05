@@ -1,11 +1,15 @@
-#kontrol_gpio{
-	clear:both;
-	margin:50px 0;
-	text-align:center;
-	background-color: #f0f0f0;
-	padding:20px;
-	color:#555555;
+
+#button_kontrol{
+	margin-top:0px;
+	list-style:none;
 }
 
-	
-#kontrol_gpio img{ width:480px ; height:320px ; }
+#button_kontrol li{
+	float:left;
+	padding:4px 20px;
+	border-right:1px solid #DDDDDD;
+
+#button_kontrol li a{
+	color : #ffffff;
+	text-decoration:none;
+}

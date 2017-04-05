@@ -1,0 +1,11 @@
+#streaming{
+	clear:both;
+	margin:50px 0;
+	text-align:center;
+	background-color: #f0f0f0;
+	padding:20px;
+	color:#555555;
+}
+
+	
+#streaming img{ width:720px ; height:350px ; }

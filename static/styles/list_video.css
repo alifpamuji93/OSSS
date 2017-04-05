@@ -11,30 +11,3 @@
 	margin-bottom:20px;
 	overflow:hidden;
 }
-
-.video img{
-	float:left;
-	margin-right:10px;
-	width:200px;
-	height:265px;
-}
-
-.video b{
-	color:#616060;
-	background:#DDDDDD;
-	padding:3px;
-	font-size:12px;
-	font-weight:bold;
-	margin-right:10px;
-}
-
-
-.video p{
-	margin:10px 0;
-}
-
-.video a{
-	display:block;
-	text-align:right;
-	color:#636363;
-}

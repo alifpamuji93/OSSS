@@ -1,0 +1,41 @@
+<!DOCTYPE HTML>
+<HTML>
+	<head>
+		<title>About</title>
+		<link rel="stylesheet" href="/static/styles/header.css" />
+		<link rel="stylesheet" href="/static/styles/footer.css" />
+		<link rel="stylesheet" href="/static/styles/welcome.css" />
+		<link rel="stylesheet" href="static/styles/list_video.css" />
+		<link rel="stylesheet" href="/static/styles/kontrol_gpio.css" />
+		<link rel="stylesheet" href="static/styles/streaming.css" />
+					
+		
+	</head>
+	<body>
+		<div id="wrapper">
+			<img src="static/images/logo.png" alt="logo" />
+			<div id="header">
+				<div id="login">
+					<a href="{{ url_for('logout') }}">Log out</a>
+				</div>
+				<ul id="menu-utama">
+					<li><a href="{{ url_for('index') }}">Beranda</a></li>
+					<li><a href="{{ url_for('daftar_video') }}">Daftar video</a></li>
+					<li><a href="{{ url_for('kontrol_gpio') }}">Kontrol GPIO</a></li>
+					<li><a href="{{ url_for('video_streaming') }}">Video Streaming</a></li>
+					<li><a href="{{ url_for('about') }}">About</a></li>
+				</ul>
+			</div><!-- Penutup div "header" -->
+			
+			<div id="bottom_header">
+				<p>:: One Shock Security System Application ::</p>
+			</div><!-- Penutup div "botttom_header" -->
+			
+			{% block content %}{% endblock %}
+
+			<div id="footer">
+				<p>Copyright © 2017 by alifpamuji93</p>
+			</div>
+		</div><!-- Penutup div "wrapper" -->
+	</body>
+</HTML>
