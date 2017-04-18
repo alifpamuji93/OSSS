@@ -5,19 +5,19 @@
 }
 
 body{
-	background-color:#DDDDDD;
+	background-color:#cdcbf1;
 }
 
 #wrapper{
 	background-color:#ffffff;
-	width : 780px;
+	width : 1080px;
 	margin: 0 auto;
 	overflow: hidden;
 }
 #wrapper img{ width:200px ; height:50px ; padding:20px 0 0 0}
 
 #header{
-	background: url(images/header.jpg) repeat-x #555;
+	background: url(images/header.jpg) repeat-x #6849c3;
 	height : 25px;
 	width : 100%;
 	padding:5px;
@@ -55,7 +55,7 @@ body{
 	clear:both;
 	margin:0 0 20px 0;
 	text-align:center;
-	background-color: #DDDDDD;
+	background-color: #a29df7;
 	font-size:13px;
 	padding:2px;
 	color:#ffffff;

@@ -73,6 +73,10 @@ def video_streaming():
     else:
 		return render_template('video_streaming.html')
 
+@app.route('/camera')
+def camera():
+    return render_template('video_streaming.html')
+
 def gen(camera):
     while True:
         frame = camera.get_frame()
