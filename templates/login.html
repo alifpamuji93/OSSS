@@ -1,4 +1,12 @@
 <link rel="stylesheet" href="/static/styles/style.css" type="text/css">
+<link rel="stylesheet" href="/static/styles/welcome.css" />
+
+
+<div id="welcome">
+	<h1> Selamat Datang di Aplikasi One Shock Security System!</h1>
+	<p>Ini merupakan aplikasi web untuk kontrol dan monitoring sebuah sistem keamanan rumah tinggal One Shock Security System. Silakan Log in untuk memulai.</p>	
+</div><!-- Penutup div "welcome" -->
+
 {% block body %}
 {% if session['logged_in'] %}
 <p>You're logged in already!</p>
@@ -31,4 +39,6 @@
 </form>
  
 {% endif %}
+
 {% endblock %}
+

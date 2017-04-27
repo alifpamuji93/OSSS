@@ -15,15 +15,12 @@
 # 3. Navigate the browser to the local webpage.
 from flask import Flask, request, url_for, redirect, render_template, Response
 from camera import VideoCamera
+from lampu import lampu_on, lampu_off
 
 # Import lib login page
 from flask import flash, redirect, request, session, abort
 import os
 
-import RPi.GPIO as GPIO
-GPIO.setmode(GPIO.BCM)
-GPIO.setwarnings(False)
-GPIO.setup(17, GPIO.OUT)
 
 app = Flask(__name__)
 
@@ -40,47 +37,44 @@ def index():
     if not session.get('logged_in'):
         return render_template('login.html')
     else:
-		return render_template('index.html')
+	    return render_template('index.html')
 		
 @app.route('/daftar_video')					
 def daftar_video():
     if not session.get('logged_in'):
         return render_template('login.html')
     else:    
-		return render_template('daftar_video.html')
+	    return render_template('daftar_video.html')
 	
 @app.route('/kontrol_gpio')
 def kontrol_gpio():
     if not session.get('logged_in'):
         return render_template('login.html')
     else:
-		return render_template('kontrol_gpio.html')
+	    return render_template('kontrol_gpio.html')
 		
 @app.route('/gpio_on')
 def gpio_on():
     if not session.get('logged_in'):
         return render_template('login.html')
     else:
-	    import RPi.GPIO as GPIO
-		GPIO.setmode(GPIO.BCM)
-		GPIO.setwarnings(False)
-		GPIO.setup(17, GPIO.OUT)
-		return render_template('gpio_on.html')
+	    lampu_on()
+	    return render_template('gpio_on.html')
 
 @app.route('/gpio_off')
 def gpio_off():
     if not session.get('logged_in'):
         return render_template('login.html')
     else:
-		GPIO.cleanup()
-		return render_template('gpio_off.html')
+	    lampu_off()
+            return render_template('gpio_off.html')
 
 @app.route('/video_streaming')
 def video_streaming():
     if not session.get('logged_in'):
         return render_template('login.html')
     else:
-		return render_template('video_streaming.html')
+	    return render_template('video_streaming.html')
 
 def gen(camera):
     while True:
@@ -98,7 +92,7 @@ def about():
     if not session.get('logged_in'):
         return render_template('login.html')
     else:
-		return render_template('about.html')
+	    return render_template('about.html')
 
 @app.route("/logout")
 def logout():
