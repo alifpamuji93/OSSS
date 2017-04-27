@@ -1,0 +1,60 @@
+//colors
+$moon_raker: #cdcbf1;
+$white: #ffffff;
+$blue_violet: #6849c3;
+$dull_lavender: #a29df7;
+
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: calibri, "segoe ui", arial, tahoma, sans-serif;
+}
+body {
+  background-color: $moon_raker;
+}
+#wrapper {
+  background-color: $white;
+  width: 1080px;
+  margin: 0 auto;
+  overflow: hidden;
+  img: ;
+}
+#header {
+  background: url(images/header.jpg) repeat-x $blue_violet;
+  height: 25px;
+  width: 100%;
+  padding: 5px;
+  margin: 20px 0 0;
+  overflow: hidden;
+}
+#menu-utama {
+  margin-top: 0;
+  list-style: none;
+  li: ;
+}
+#bottom_header {
+  clear: both;
+  margin: 0 0 20px 0;
+  text-align: center;
+  background-color: $dull_lavender;
+  font-size: 13px;
+  padding: 2px;
+  color: $white;
+}
+#login a {
+  float: right;
+  margin-top: 4px;
+  margin-right: 20px;
+  color: $white;
+  text-decoration: none;
+}
+
+#footer{
+  clear:both;
+  margin:20px 0;
+  text-align:center;
+  background-color: #a29df7;
+  padding:5px;
+  color:#555555;
+}
