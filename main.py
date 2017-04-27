@@ -1,20 +1,11 @@
 #!/usr/bin/env python
-#
-# Project: Video Streaming with Flask
-# Author: Log0 <im [dot] ckieric [at] gmail [dot] com>
-# Date: 2014/12/21
-# Website: http://www.chioka.in/
-# Description:
-# Modified to support streaming out with webcams, and not just raw JPEGs.
-# Most of the code credits to Miguel Grinberg, except that I made a small tweak. Thanks!
-# Credits: http://blog.miguelgrinberg.com/post/video-streaming-with-flask
-#
-# Usage:
-# 1. Install Python dependencies: cv2, flask. (wish that pip install works like a charm)
-# 2. Run "python main.py".
-# 3. Navigate the browser to the local webpage.
+
 from flask import Flask, request, url_for, redirect, render_template, Response
 from camera import VideoCamera
+import os
+import sys
+
+video_dir = 'static/video'
 
 app = Flask(__name__)
 
@@ -22,9 +13,16 @@ app = Flask(__name__)
 def index():
     return render_template('index.html')
 	
-@app.route('/daftar_video')					
-def daftar_video():
-    return render_template('daftar_video.html')
+@app.route('/daftar_video')
+def video():
+    video_files = [f for f in os.listdir(video_dir) if f.endswith('mp4')]
+    video_files_number = len(video_files)
+    return render_template("daftar_video.html",
+        title = 'Video list',
+        video_files_number = video_files_number,
+        video_files = video_files)
+
+
 	
 @app.route('/kontrol_gpio')
 def kontrol_gpio():

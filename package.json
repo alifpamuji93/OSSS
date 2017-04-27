@@ -1,0 +1,33 @@
+{
+  "name": "oss-app",
+  "version": "1.0.0",
+  "description": "oss aplication",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alifpamuji93/OSSS.git"
+  },
+  "keywords": [
+    "oss",
+    "smarthome"
+  ],
+  "author": [
+    {
+      "name": "Nur Wachid",
+      "email": "wachid@outlook.com"
+    },
+    {
+      "name": "Alif Panmuji",
+      "email": "@email.com"
+    }
+  ],
+
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/alifpamuji93/OSSS/issues"
+  },
+  "homepage": "https://github.com/alifpamuji93/OSSS#readme"
+}

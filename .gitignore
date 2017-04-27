@@ -92,3 +92,7 @@ ENV/
 
 # ignore video
 static/video/
+
+*.mp4
+*.avi
+*.mjpeg
