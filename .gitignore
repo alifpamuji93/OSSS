@@ -93,6 +93,8 @@ ENV/
 # ignore video
 static/video/
 node_modules
+bower_components
+
 *.mp4
 *.avi
 *.mjpeg
