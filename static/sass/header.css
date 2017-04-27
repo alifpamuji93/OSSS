@@ -1,0 +1,64 @@
+*{
+	margin:0;
+	padding:0;
+	font-family:calibri, "segoe ui", arial, tahoma, sans-serif;
+}
+
+body{
+	background-color:#cdcbf1;
+}
+
+#wrapper{
+	background-color:#ffffff;
+	width : 1080px;
+	margin: 0 auto;
+	overflow: hidden;
+}
+#wrapper img{ width:200px ; height:50px ; padding:20px 0 0 0}
+
+#header{
+	background: url(images/header.jpg) repeat-x #6849c3;
+	height : 25px;
+	width : 100%;
+	padding:5px;
+	margin : 20px 0 0 0;
+	overflow : hidden;
+}
+
+#login a{
+	float:right;
+	margin-top:4px;
+	margin-right:20px;
+	color : #ffffff;
+	text-decoration:none;
+}
+
+#menu-utama{
+	margin-top:0px;
+	list-style:none;
+}
+
+#menu-utama li{
+	float:left;
+	padding:4px 20px;
+	border-right:1px solid #DDDDDD;
+}
+
+
+#menu-utama li a{
+	color : #ffffff;
+	text-decoration:none;
+}
+
+#bottom_header{
+	
+	clear:both;
+	margin:0 0 20px 0;
+	text-align:center;
+	background-color: #a29df7;
+	font-size:13px;
+	padding:2px;
+	color:#ffffff;
+}
+
+

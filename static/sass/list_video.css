@@ -1,0 +1,13 @@
+#daftar_video{
+	width:570px;
+	float:left;
+	background-color: #f0f0f0;
+	padding:10px;
+}
+
+.video{
+	background:#ffffff;
+	padding:20px;
+	margin-bottom:20px;
+	overflow:hidden;
+}
