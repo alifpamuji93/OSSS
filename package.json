@@ -24,10 +24,17 @@
       "email": "@email.com"
     }
   ],
-
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/alifpamuji93/OSSS/issues"
   },
-  "homepage": "https://github.com/alifpamuji93/OSSS#readme"
+  "homepage": "https://github.com/alifpamuji93/OSSS#readme",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-sass": "^3.1.0"
+  },
+  "dependencies": {
+    "bootstrap-sass": "^3.3.7",
+    "font-awesome": "^4.7.0"
+  }
 }

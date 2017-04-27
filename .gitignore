@@ -92,7 +92,7 @@ ENV/
 
 # ignore video
 static/video/
-
+node_modules
 *.mp4
 *.avi
 *.mjpeg
