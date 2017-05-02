@@ -12,14 +12,13 @@ try:
     while True:
         if GPIO.input(pirPin) == GPIO.LOW:
             print "No motion"
-            mail("alifpamuji93@gmail.com", "subjek", "halo", "README.md")
-
+            
             lampu_off()
             
         else:
             print "Gerakan terdeteksi!"
             print "Kamera mulai merekam..."
-
+            mail("alifpamuji93@gmail.com", "subjek", "halo", "README.md")
             time.sleep(3.0)
             lampu_on()
             time.sleep(10.0)
