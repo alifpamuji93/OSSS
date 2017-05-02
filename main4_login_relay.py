@@ -14,8 +14,8 @@
 # 2. Run "python main.py".
 # 3. Navigate the browser to the local webpage.
 from flask import Flask, request, url_for, redirect, render_template, Response
-from camera import VideoCamera
-from lampu import lampu_on, lampu_off
+from model.camera import VideoCamera
+from model.lampu import lampu_on, lampu_off
 
 # Import lib login page
 from flask import flash, redirect, request, session, abort

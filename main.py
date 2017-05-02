@@ -1,41 +1,93 @@
 #!/usr/bin/env python
+#
+# Project: Video Streaming with Flask
+# Author: Log0 <im [dot] ckieric [at] gmail [dot] com>
+# Date: 2014/12/21
+# Website: http://www.chioka.in/
+# Description:
+# Modified to support streaming out with webcams, and not just raw JPEGs.
+# Most of the code credits to Miguel Grinberg, except that I made a small tweak. Thanks!
+# Credits: http://blog.miguelgrinberg.com/post/video-streaming-with-flask
+#
+# Usage:
+# 1. Install Python dependencies: cv2, flask. (wish that pip install works like a charm)
+# 2. Run "python main.py".
+# 3. Navigate the browser to the local webpage.
+from flask import Flask, request, url_for, redirect, render_template, Response
+from model.camera import VideoCamera
+from model.lampu import lampu_on, lampu_off
 
-from flask import Flask, request, redirect, render_template, Response
-from camera import VideoCamera
-
+# Import lib login page
+from flask import flash, redirect, request, session, abort
 import os
-import sys
 
 video_dir = 'static/video'
 
+
 app = Flask(__name__)
 
-
+@app.route('/login', methods=['POST'])
+def do_admin_login():
+    if request.form['password'] == 'al' and request.form['username'] == 'alif':
+        session['logged_in'] = True
+    else:
+        flash('wrong password!')
+    return index()
 
 @app.route('/')
 def index():
-    return render_template('index.html')
-
-
-
+    if not session.get('logged_in'):
+        return render_template('login.html')
+    else:
+	    return render_template('index.html')
+		
 @app.route('/daftar_video')
-def video():
-    video_files = [f for f in os.listdir(video_dir) if f.endswith('mp4')]
-    video_files_number = len(video_files)
-    return render_template("video.html",
-        title = 'Video list',
-        video_files_number = video_files_number,
-        video_files = video_files)
+def daftar_video():
+    if not session.get('logged_in'):
+        return render_template('login.html')
+    else:
+        video_files = [f for f in os.listdir(video_dir) if f.endswith('mp4')]
+        video_files_number = len(video_files)
+        return render_template("daftar_video.html",
+            title = 'Video list',
+            video_files_number = video_files_number,
+            video_files = video_files)
 
 @app.route('/play/<filename>.html')
 def song(filename):
     return render_template('play.html',
                         title = 'play',
                         filename = filename)
+	
+@app.route('/kontrol_gpio')
+def kontrol_gpio():
+    if not session.get('logged_in'):
+        return render_template('login.html')
+    else:
+	    return render_template('kontrol_gpio.html')
+		
+@app.route('/gpio_on')
+def gpio_on():
+    if not session.get('logged_in'):
+        return render_template('login.html')
+    else:
+	    lampu_on()
+	    return render_template('gpio_on.html')
+
+@app.route('/gpio_off')
+def gpio_off():
+    if not session.get('logged_in'):
+        return render_template('login.html')
+    else:
+	    lampu_off()
+            return render_template('gpio_off.html')
 
 @app.route('/video_streaming')
-def camera():
-    return render_template('index.html', title = 'Lihat ruangan')
+def video_streaming():
+    if not session.get('logged_in'):
+        return render_template('login.html')
+    else:
+	    return render_template('video_streaming.html')
 
 def gen(camera):
     while True:
@@ -47,24 +99,19 @@ def gen(camera):
 def video_feed():
     return Response(gen(VideoCamera()),
                     mimetype='multipart/x-mixed-replace; boundary=frame')
-
-
-    
-@app.route('/kontrol_gpio')
-def kontrol_gpio():
-    return render_template('kontrol_gpio.html')
-                    
+					
 @app.route('/about')
 def about():
-    return render_template('about.html')
+    if not session.get('logged_in'):
+        return render_template('login.html')
+    else:
+	    return render_template('about.html')
 
-@app.route('/gpio_on')
-def gpio_on():
-    return render_template('gpio_on.html')
-
-@app.route('/gpio_off')
-def gpio_off():
-    return render_template('gpio_off.html')
+@app.route("/logout")
+def logout():
+    session['logged_in'] = False
+    return index()
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', debug=True)
+    app.secret_key = os.urandom(12)
+    app.run(host='0.0.0.0',port=5000, debug=True)

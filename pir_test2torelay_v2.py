@@ -1,6 +1,6 @@
 import RPi.GPIO as GPIO
 import time
-from lampu import lampu_on, lampu_off
+from model.lampu import lampu_on, lampu_off
 from model.kirim import mail
 
 GPIO.setmode(GPIO.BCM)
