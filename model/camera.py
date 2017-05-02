@@ -31,6 +31,9 @@ class VideoCamera(object):
         ret, jpeg = cv2.imencode('.jpg', image)
         return jpeg.tobytes()
 
+    def rekam(self):
+    	pass
+
         
 class CaptureManager(object):
 	def __init__(self, capture, previewWindowManager = None,
