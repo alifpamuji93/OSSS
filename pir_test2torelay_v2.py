@@ -1,6 +1,7 @@
 import RPi.GPIO as GPIO
 import time
 from lampu import lampu_on, lampu_off
+from model.kirim import mail
 
 GPIO.setmode(GPIO.BCM)
 pirPin = 18
@@ -11,6 +12,7 @@ try:
     while True:
         if GPIO.input(pirPin) == GPIO.LOW:
             print "No motion"
+            mail("alifpamuji93@gmail.com", "subjek", "halo", "README.md")
 
             lampu_off()
             
