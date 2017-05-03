@@ -1,40 +1,24 @@
 {
-  "name": "oss-app",
-  "version": "1.0.0",
-  "description": "oss aplication",
-  "main": "index.js",
+  "private": true,
   "scripts": {
-    "test": "test"
+    "dev": "npm run development",
+    "development": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=./webpack.config.js",
+    "watch": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --watch --progress --hide-modules --config=./webpack.config.js",
+    "watch-poll": "npm run watch -- --watch-poll",
+    "hot": "cross-env NODE_ENV=development node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline --hot --config=./webpack.config.js",
+    "prod": "npm run production",
+    "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --progress --hide-modules --config=./webpack.config.js"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/alifpamuji93/OSSS.git"
-  },
-  "keywords": [
-    "oss",
-    "smarthome"
-  ],
-  "author": [
-    {
-      "name": "Nur Wachid",
-      "email": "wachid@outlook.com"
-    },
-    {
-      "name": "Alif Panmuji",
-      "email": "@email.com"
-    }
-  ],
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/alifpamuji93/OSSS/issues"
-  },
-  "homepage": "https://github.com/alifpamuji93/OSSS#readme",
   "devDependencies": {
-    "gulp": "^3.9.1",
-    "gulp-sass": "^3.1.0"
+    "axios": "^0.15.3",
+    "bootstrap-sass": "^3.3.7",
+    "cross-env": "^3.2.3",
+    "jquery": "^3.1.1",
+    "laravel-mix": "0.*",
+    "lodash": "^4.17.4",
+    "vue": "^2.1.10"
   },
   "dependencies": {
-    "bootstrap-sass": "^3.3.7",
-    "font-awesome": "^4.7.0"
+    "plyr": "^2.0.12"
   }
 }
