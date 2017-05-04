@@ -94,6 +94,7 @@ ENV/
 static/video/
 node_modules
 bower_components
+.idea/
 
 *.mp4
 *.avi
