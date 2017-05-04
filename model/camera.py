@@ -1,6 +1,7 @@
 import cv2
 import numpy
 import time
+from datetime import datetime
 
 class VideoCamera(object):
     """ video streaming dengan openCV
@@ -11,13 +12,35 @@ class VideoCamera(object):
 
      """
     def __init__(self):
-        # Using OpenCV to capture from device 0. If you have trouble capturing
-        # from a webcam, comment the line below out and use a video file
-        # instead.
+        """
+        Using OpenCV to capture from device 0. If you have trouble capturing
+        from a webcam, comment the line below out and use a video file
+        instead.
+        """
         self.video = cv2.VideoCapture(0)
-        # If you decide to use video.mp4, you must have this file in the folder
-        # as the main.py.
-        self.videomp4 = cv2.VideoCapture('video.mp4')
+        """
+        If you decide to use video.mp4, you must have this file in the folder
+        as the main.py.
+       """
+        # self.videomp4 = cv2.VideoCapture('video.mp4')
+
+        self.timer = None
+        self.filename = None
+        self.out = None
+        self.codec = None
+        self.dirName = None
+        self.filename = None
+
+    @property
+    def filename(self):
+    	return self.filename
+
+    @filename.setter
+    def filename(self):
+		self.dirName = 'static/video'
+		self.filename = datetime.now().strftime("%Y-%m-%d_%H.%M.%S.avi")
+		return self.dirName + self.filename
+		
     
     def __del__(self):
         self.video.release()
@@ -30,6 +53,17 @@ class VideoCamera(object):
         # video stream.
         ret, jpeg = cv2.imencode('.jpg', image)
         return jpeg.tobytes()
+
+    def rekam(self):
+    	ret, frame = self.video.read()
+    	if ret == True:
+			# write the flipped frame
+			self.out.write(frame)
+			self.timer -= 0
+			self.video.release()
+			self.out.release()
+			cv2.destroyAllWindows()
+    	
 
         
 class CaptureManager(object):
@@ -69,7 +103,7 @@ class CaptureManager(object):
 			return self._frame
 
 	@property
-	def isWritingImage (self):
+	def isWritingImage(self):
 		return self._imageFilename is not None
 
 	@property
@@ -84,7 +118,7 @@ class CaptureManager(object):
 		if self._capture is not None:
 			self._enteredFrame = self._capture.grab()
 
-	def exitFrame (self):
+	def exitFrame(self):
 		"""Draw to the window. Write to files. Release the frame."""
 		# Check whether any grabbed frame is retrievable.
 		# The getter may retrieve and cache the frame.

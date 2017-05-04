@@ -93,6 +93,8 @@ ENV/
 # ignore video
 static/video/
 node_modules
+.idea/
+
 *.mp4
 *.avi
 *.mjpeg
