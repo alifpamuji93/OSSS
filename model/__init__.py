@@ -6,14 +6,14 @@ from __future__ import (
 )
 
 from .camera import (
-    videoCamera
+    VideoCamera
 )
 
-from .lampu import (
-	lampu_on,
-	lampu_off
-)
+# from .lampu import (
+# 	lampu_on,
+# 	lampu_off
+# )
 
-from .kirim import (
-	mail
-)
+# from .kirim import (
+# 	mail
+# )

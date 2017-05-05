@@ -30,20 +30,12 @@ class VideoCamera(object):
         as the main.py.
        """
         # self.videomp4 = cv2.VideoCapture('video.mp4')
-        self.filename = None
-        self.codecName = None
-        self.codec = None
-        self.fps = None
-        self.resolution = None
-        self.output = None
-        self.capture = None  
-
+       
     def __del__(self):
         self.video.release()
         cv2.destroyAllWindows()
 
-	def capture(self):
-		self.capture = cv2.VideoCapture(0)
+	
 
 	def filename(self):
 		self.dirName = 'static/video'
@@ -77,22 +69,15 @@ class VideoCamera(object):
         ret, jpeg = cv2.imencode('.jpg', image)
         return jpeg.tobytes()
 
-    def output(self):
-    	self.output = cv2.VideoWriter(self.filename, self.codec, self.fps, self.resolution)
-    	return self.output
-
-    def saveFile(self):
-    	self.filename = datetime.now().strftime("%Y-%m-%d_%H.%M.%S.avi")
-    	self.dirName = 'static/video'
-    	return self.dirName + self.filename
+    
+    
     	
 
     def rekam(self):
-    	ret, frame = self.capture.read()
+    	ret, frame = self.video.read()
     	if ret == True:
 			# write the flipped frame
-			self.video.write(frame)
-			self.timer -= 0
+			
 			self.video.release()
 			self.video.release()
 			cv2.destroyAllWindows()
