@@ -1,15 +1,41 @@
 {
-  "private": true,
-  "scripts": {
-    "dev": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=./webpack.config.js",
-    "watch": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --watch --progress --hide-modules --config=./webpack.config.js",
-    "watch-poll": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --watch --watch-poll --progress --hide-modules --config=./webpack.config.js",
-    "hot": "cross-env NODE_ENV=development node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline --hot --config=./webpack.config.js",
-    "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --progress --hide-modules --config=./webpack.config.js"
+  "name": "oss",
+  "version": "1.0.0",
+  "description": "tugas akhir one shock secuiryty system",
+  "main": "gulpfile.js",
+  "dependencies": {
+    "bootstrap-sass": "^3.3.7",
+    "font-awesome": "^4.7.0",
+    "jquery": "^3.2.1"
   },
   "devDependencies": {
-    "cross-env": "^3.2.3",
-    "laravel-mix": "^0.8.3",
-    "lodash": "^4.17.4"
-  }
+    "del": "^2.2.2",
+    "gulp": "^3.9.1",
+    "gulp-coffee": "^2.3.4",
+    "gulp-concat": "^2.6.1",
+    "gulp-imagemin": "^3.2.0",
+    "gulp-less": "^3.3.0",
+    "gulp-sass": "^3.1.0",
+    "gulp-sourcemaps": "^2.6.0",
+    "gulp-uglify": "^2.1.2"
+  },
+  "scripts": {
+    "test": "gulp test",
+    "prod": "gulp production",
+    "dev": "gulp development"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alifpamuji93/OSSS.git"
+  },
+  "keywords": [
+    "gulp",
+    "web"
+  ],
+  "author": "wachid",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/alifpamuji93/OSSS/issues"
+  },
+  "homepage": "https://github.com/alifpamuji93/OSSS#readme"
 }

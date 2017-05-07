@@ -1,5 +1,18 @@
-from model.camera import VideoCamera
+from flask import Flask, request, url_for, redirect, render_template, Response
+from flask.ext.sqlalchemy import SQLAlchemy
+from datetime import datetime
 
-camera = VideoCamera()
+app = Flask(__name__)
 
-camera.rekam()
+
+
+@app.route('/')
+def index():
+	return render_template('base.html')
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+	pass
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0',port=5000, debug=True)
