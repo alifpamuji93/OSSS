@@ -1,6 +1,4 @@
-import RPi.GPIO as GPIO
-import time
-from model.lampu import lampu_on, lampu_off
+from model.lampu import Lampu as lampu
 # from model.kirim import mail
 # from model.camera import VideoCamera as camera
 import cv2
@@ -25,7 +23,7 @@ try:
         if GPIO.input(pirPin) == GPIO.LOW:
             print "No motion"
             
-            lampu_off()
+            lampu.off()
             
         else:
             print "Gerakan terdeteksi!"
@@ -34,7 +32,7 @@ try:
             out.write(frame)
             # mail("alifpamuji93@gmail.com", "subjek", "halo", "README.md")
             # time.sleep(3.0)
-            lampu_on()
+            lampu.on()
             # time.sleep(10.0)
             
         time.sleep(0.2)
