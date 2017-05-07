@@ -1,4 +1,5 @@
 window.$ = window.jQuery = require('jquery');
+require('bootstrap-sass');
 
 /*---LEFT BAR ACCORDION----*/
 $(function() {
