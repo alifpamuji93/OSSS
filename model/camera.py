@@ -1,6 +1,7 @@
 import cv2
 import numpy
 import time
+from datetime import datetime
 
 class VideoCamera(object):
     """ video streaming dengan openCV
@@ -11,13 +12,24 @@ class VideoCamera(object):
 
      """
     def __init__(self):
-        # Using OpenCV to capture from device 0. If you have trouble capturing
-        # from a webcam, comment the line below out and use a video file
-        # instead.
+        """
+        Using OpenCV to capture from device 0. If you have trouble capturing
+        from a webcam, comment the line below out and use a video file
+        instead.
+        """
         self.video = cv2.VideoCapture(0)
-        # If you decide to use video.mp4, you must have this file in the folder
-        # as the main.py.
+        """
+        If you decide to use video.mp4, you must have this file in the folder
+        as the main.py.
+       """
         self.videomp4 = cv2.VideoCapture('video.mp4')
+
+        self.filename = datetime.now()
+
+        self.timer = time.sleep(10)
+
+	self.codec = cv2.VideoWriter_fourcc(*’XVID’)
+	self.out = cv2.VideoWriter(filename,fourcc, 20.0, (640,480))
     
     def __del__(self):
         self.video.release()
@@ -30,6 +42,18 @@ class VideoCamera(object):
         # video stream.
         ret, jpeg = cv2.imencode('.jpg', image)
         return jpeg.tobytes()
+
+    def rekam(self):
+    	ret, frame = self.video.read()
+		if ret == True:
+			# write the flipped frame
+			self.out.write(frame)
+			self.timer -= 0
+			self.video.release()
+			self.out.release()
+			cv2.destroyAllWindows()
+		break
+    	
 
         
 class CaptureManager(object):
