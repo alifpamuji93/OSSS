@@ -96,6 +96,13 @@ node_modules
 bower_components
 .idea/
 
+# ignore jekyll file
+.sass-cache/
+_site
+
+
+# ignore video file
+
 *.mp4
 *.avi
 *.mjpeg

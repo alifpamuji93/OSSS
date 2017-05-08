@@ -40,7 +40,31 @@ def mail(to, subject, text, attach):
             # server.quit()
       mailServer.close()
 
-mail("sparrow.dewa@gmail.com",
-   "Hello from python!",
-   "This is a email sent with python",
-   "README.md")
+# mail("sparrow.dewa@gmail.com",
+#    "Hello from python!",
+#    "This is a email sent with python",
+#    "README.md")
+
+
+def kirim(to, pesan):
+   server = smtplib.SMTP('smtp.gmail.com', 587)
+   server.starttls()
+   server.login(gmail_user, gmail_pwd)
+    
+   msg = pesan
+   server.sendmail(gmail_user, to, pesan)
+   server.quit()
+
+# kirim("alifpamuji93@gmail.com", "halo")
+
+class pesan(object):
+   """docstring for pesan"""
+   def __init__(self, server, port):
+      self.server = smtp.gmail
+      self.port = 587
+      self.to = None
+      self.subject = None
+      self.text = None
+
+      
+      
