@@ -40,7 +40,7 @@ def mail(to, subject, text, attach):
             # server.quit()
       mailServer.close()
 
-mail("wachid@outlook.com",
-   "Hello from python!",
-   "This is a email sent with python",
-   "README.md")
+##mail("wachid@outlook.com",
+##   "Hello from python!",
+##   "This is a email sent with python",
+##   "README.md")

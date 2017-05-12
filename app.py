@@ -1,4 +1,5 @@
 import RPi.GPIO as GPIO
+import cv2
 import time
 from model.lampu import lampu_on, lampu_off
 from model.kirim import mail
@@ -13,7 +14,7 @@ try:
     while True:
         if GPIO.input(pirPin) == GPIO.LOW:
             print "No motion"
-            rekam_off()
+##            rekam_off()
             
             lampu_off()
             
@@ -21,7 +22,7 @@ try:
             print "Gerakan terdeteksi!"
             print "Kamera mulai merekam..."
 
-            camera.rekam()
+##            camera.rekam()
 
             mail("alifpamuji93@gmail.com", "subjek", "halo", "README.md")
             time.sleep(3.0)

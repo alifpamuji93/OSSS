@@ -22,17 +22,16 @@ class VideoCamera(object):
         If you decide to use video.mp4, you must have this file in the folder
         as the main.py.
        """
-<<<<<<< HEAD
+
         self.videomp4 = cv2.VideoCapture('video.mp4')
 
         self.filename = datetime.now()
 
         self.timer = time.sleep(10)
 
-	self.codec = cv2.VideoWriter_fourcc(*’XVID’)
+	self.codec = cv2.VideoWriter_fourcc(*'XVID')
 	self.out = cv2.VideoWriter(filename,fourcc, 20.0, (640,480))
-=======
-        # self.videomp4 = cv2.VideoCapture('video.mp4')
+
 
         self.timer = None
         self.filename = None
@@ -50,8 +49,7 @@ class VideoCamera(object):
 		self.dirName = 'static/video'
 		self.filename = datetime.now().strftime("%Y-%m-%d_%H.%M.%S.avi")
 		return self.dirName + self.filename
-		
->>>>>>> refs/remotes/origin/master
+
     
     def __del__(self):
         self.video.release()
@@ -67,21 +65,16 @@ class VideoCamera(object):
 
     def rekam(self):
     	ret, frame = self.video.read()
-<<<<<<< HEAD
-		if ret == True:
-=======
-    	if ret == True:
->>>>>>> refs/remotes/origin/master
+
+        if ret == True:
+
 			# write the flipped frame
 			self.out.write(frame)
 			self.timer -= 0
 			self.video.release()
 			self.out.release()
 			cv2.destroyAllWindows()
-<<<<<<< HEAD
-		break
-=======
->>>>>>> refs/remotes/origin/master
+       
     	
 
         

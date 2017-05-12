@@ -1,0 +1,42 @@
+import cv2
+from datetime import datetime
+import RPi.GPIO as GPIO
+
+GPIO.setmode(GPIO.BCM)
+pirPin = 18
+GPIO.setup(pirPin, GPIO.IN)
+
+state = False
+val = False
+
+GPIO.setmode(GPIO.BOARD)	# Change this if using GPIO numbering
+GPIO.setup(PIR, GPIO.IN)
+
+cap = cv2.VideoCapture(0)
+
+# medifinisikan codec yang dipakai
+filename = datetime.now().strftime("%Y-%m-%d_%H.%M.%S.avi")
+fourcc = cv2.VideoWriter_fourcc(*'XVID')
+out = cv2.VideoWriter(filename, fourcc, 20.0, (640,480))
+
+
+ret, frame = cap.read()
+
+while ret:
+	out.write(frame)
+	ret, frame = cap.read()
+
+try:
+	while True:
+		val = GPIO.input(pirPin)		# read input value
+		if (val == True):		# check if the input is HIGH
+			out.write(frame)
+			ret, frame = cap.read()
+		else:
+			GPIO.output(LED, False)	# turn LED OFF
+			if (state == True):
+				# OFF
+				cap.release()
+				out.release()
+except KeyboardInterrupt:
+	GPIO.cleanup()
