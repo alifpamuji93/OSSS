@@ -28,22 +28,15 @@ while True:
         ret, frame = cap.read()
 
         while (cap.isOpened()):
-            out.write(frame)
-            time.sleep(3.0)
-            print("Lampu menyala")
-            GPIO.setwarnings(False)
-            GPIO.setup(relayPin, GPIO.OUT)
-                                
-            if GPIO.input(pirPin) == GPIO.LOW:
-
-                GPIO.input(relayPin) == GPIO.HIGH
-                                 
-                if GPIO.input(relayPin) == GPIO.HIGH:
-                    cap.release()
-
+            if ret == True:
+                out.write(frame)
+                GPIO.setup(relayPin, GPIO.OUT)
+                print("lampu nyala")
+                if cv2.waitKey(1) & 0xFF == time.sleep(2.0):
                     break
+            else:
                 break
-                      
+                GPIO.cleanup()
 
             
         
