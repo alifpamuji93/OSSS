@@ -27,15 +27,24 @@ while True:
         out = cv2.VideoWriter(filename, codec, 20.0, (640, 480))
         ret, frame = cap.read()
 
-        out.write(frame)
+        while (cap.isOpened()):
+            out.write(frame)
+            time.sleep(3.0)
+            print("Lampu menyala")
+            GPIO.setwarnings(False)
+            GPIO.setup(relayPin, GPIO.OUT)
+                                
+            if GPIO.input(pirPin) == GPIO.LOW:
+
+                GPIO.input(relayPin) == GPIO.HIGH
+                                 
+                if GPIO.input(relayPin) == GPIO.HIGH:
+                    cap.release()
+
+                    break
+                break
                       
-                  
-        time.sleep(3.0)
-        print("Lampu menyala")
-        GPIO.setwarnings(False)
-        GPIO.setup(relayPin, GPIO.OUT)
-                         
-        time.sleep(10.0)
+
             
         
 ##        cap.release()
