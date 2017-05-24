@@ -12,13 +12,8 @@ GPIO.setup(pirPin, GPIO.IN)
  
 try:
     while True:
-        if GPIO.input(pirPin) == GPIO.LOW:
-            print "No motion"
-##            rekam_off()
-            
-            lampu_off()
-            
-        else:
+        if GPIO.input(pirPin) == GPIO.HIGH:
+
             print "Gerakan terdeteksi!"
             print "Kamera mulai merekam..."
 
@@ -28,6 +23,12 @@ try:
             time.sleep(3.0)
             lampu_on()
             time.sleep(10.0)
+
+        else:    
+            print "No motion"
+##            rekam_off()
+            
+            lampu_off()
             
         time.sleep(0.2)
 except KeyboardInterrupt:
