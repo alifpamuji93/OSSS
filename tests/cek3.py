@@ -4,35 +4,48 @@ import time
 from datetime import datetime
 
 GPIO.setmode(GPIO.BCM)
-GPIO.setwarnings(False)
-
 pirPin = 18
 relayPin = 17
 
 GPIO.setup(pirPin, GPIO.IN)
 
-cap = cv2.VideoCapture(0)
 
-filename = datetime.now().strftime("../static/video/%Y-%m-%d_%H.%M.%S.avi")
-# Define the codec and create VideoWriter object
-codec = cv2.VideoWriter_fourcc(*'XVID')
-out = cv2.VideoWriter(filename,codec, 20.0, (640,480))
 
-while GPIO.input(pirPin) == GPIO.HIGH:
-	ret, frame = cap.read()
-	if ret==True:
-		# write the flipped frame
-		out.write(frame)
-		print("Lampu menyala")
-		GPIO.setup(relayPin, GPIO.OUT)
-		# cv2.imshow('frame',frame)
-		if cv2.waitKey(1) & GPIO.input(pirPin) == GPIO.LOW:
-			break
-	else:
-		break
-		GPIO.cleanup(relayPin)
+      
+while True:
 
-# Release everything if job is finished
-cap.release()
-out.release()
-cv2.destroyAllWindows()
+
+    if GPIO.input(pirPin) == GPIO.HIGH:
+        print("Gerakan terdeteksi!")
+        print("Kamera mulai merekam...")
+
+
+        cap = cv2.VideoCapture(0)
+
+        filename = datetime.now().strftime("../static/video/%Y-%m-%d_%H.%M.%S.avi")
+        codec = cv2.VideoWriter_fourcc(*'XVID')
+        out = cv2.VideoWriter(filename, codec, 20.0, (640, 480))
+        ret, frame = cap.read()
+
+        while (cap.isOpened()):
+            if ret == True:
+                out.write(frame)
+                GPIO.setup(relayPin, GPIO.OUT)
+                print("lampu nyala")
+                if cv2.waitKey(1) & 0xFF == time.sleep(2.0):
+                    break
+            else:
+                break
+                GPIO.cleanup()
+
+            
+        
+##        cap.release()
+##        out.release()
+
+    else:     
+        print("No Motion")
+
+
+        GPIO.cleanup(relayPin)
+        
