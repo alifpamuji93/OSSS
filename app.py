@@ -3,7 +3,7 @@ import cv2
 import time
 from datetime import datetime
 from model.lampu import lampu_on, lampu_off
-#from model.kirim import mail
+from model.kirim import mail
 #from model.camera import VideoCamera as camera
 
 GPIO.setmode(GPIO.BCM)
@@ -15,6 +15,7 @@ try:
     while True:
         if GPIO.input(pirPin) == GPIO.HIGH:
             print ("Gerakan terdeteksi!")
+            mail("alifpamuji93@gmail.com", "subjek", "halo", "README.md")
             print ("Kamera mulai merekam...")
 
 
@@ -30,13 +31,8 @@ try:
             while ret and delay > 0:
                 out.write(frame)
                 ret, frame = cap.read()
+                lampu_on()
                 delay -= 1
-
-        else:
-            print "Gerakan terdeteksi!"
-            print "Kamera mulai merekam..."
-
-##            camera.rekam()
 
             mail("alifpamuji93@gmail.com", "subjek", "halo", "README.md")
             # time.sleep(3.0)
