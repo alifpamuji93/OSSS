@@ -25,10 +25,10 @@ try:
 ##            camera.rekam()
 
             mail("alifpamuji93@gmail.com", "subjek", "halo", "README.md")
-            time.sleep(3.0)
+            # time.sleep(3.0)
             lampu_on()
-            time.sleep(10.0)
+            # time.sleep(10.0)
             
-        time.sleep(0.2)
+        # time.sleep(0.2)
 except KeyboardInterrupt:
     GPIO.cleanup()
