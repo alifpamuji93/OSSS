@@ -1,3 +1,4 @@
+
 import cv2
 import numpy
 import time
@@ -34,17 +35,3 @@ class VideoCamera(object):
         # video stream.
         ret, jpeg = cv2.imencode('.jpg', image)
         return jpeg.tobytes()
-
-    def rekam(self):
-    	ret, frame = self.video.read()
-
-        if ret == True:
-
-			# write the flipped frame
-			self.out.write(frame)
-			self.timer -= 0
-			self.video.release()
-			self.out.release()
-			cv2.destroyAllWindows()
-       
-    	

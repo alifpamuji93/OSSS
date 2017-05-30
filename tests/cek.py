@@ -8,16 +8,16 @@ pirPin = 18
 relayPin = 17
 
 GPIO.setup(pirPin, GPIO.IN)
-
-
-
-      
+   
 while True:
 
 
     if GPIO.input(pirPin) == GPIO.HIGH:
         print("Gerakan terdeteksi!")
         print("Kamera mulai merekam...")
+
+        GPIO.setwarnings(False)
+        GPIO.setup(relayPin, GPIO.OUT)
 
 
         cap = cv2.VideoCapture(0)
@@ -28,24 +28,14 @@ while True:
         ret, frame = cap.read()
 
         while (cap.isOpened()):
-            if ret == True:
-                out.write(frame)
-                GPIO.setup(relayPin, GPIO.OUT)
-                print("lampu nyala")
-                if cv2.waitKey(1) & 0xFF == time.sleep(2.0):
-                    break
-            else:
-                break
-                GPIO.cleanup()
-
-            
+            out.write(frame)
+            GPIO.setup(relayPin, GPIO.OUT) 
         
 ##        cap.release()
 ##        out.release()
 
     else:     
         print("No Motion")
-
 
         GPIO.cleanup(relayPin)
         
