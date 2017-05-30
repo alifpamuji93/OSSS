@@ -33,12 +33,7 @@ try:
                 ret, frame = cap.read()
                 lampu_on()
                 delay -= 1
-
-
-#                time.sleep(3.0)
-                
-                
-
+              
 #                time.sleep(10.0)
 
         else:
