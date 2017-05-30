@@ -1,5 +1,6 @@
-#!/usr/bin/env python
 
+#!/usr/bin/env python
+#
 
 from flask import Flask, request, url_for, redirect, render_template, Response
 from model.camera import VideoCamera
@@ -79,7 +80,7 @@ def video_streaming():
 
 def gen(camera):
     while True:
-        frame = VideoCamera.get_frame()
+        frame = camera.get_frame()
         yield (b'--frame\r\n'
                b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n\r\n')
 

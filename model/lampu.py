@@ -4,7 +4,7 @@ GPIO.setmode(GPIO.BCM)
 relayPin = 17
 
 def lampu_on():
-    print "Lampu menyala"
+    print ("Lampu menyala")
 
     GPIO.setwarnings(False)
     GPIO.setup(relayPin, GPIO.OUT)
