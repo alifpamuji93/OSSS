@@ -1,0 +1,35 @@
+{
+  "name": "ta",
+  "version": "1.0.0",
+  "description": "One Shock Security System",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alifpamuji93/OSSS.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/alifpamuji93/OSSS/issues"
+  },
+  "homepage": "https://github.com/alifpamuji93/OSSS#readme",
+  "devDependencies": {
+    "bootstrap": "^3.3.7",
+    "bootstrap-sass": "^3.3.7",
+    "gulp": "^3.9.1",
+    "gulp-less": "^3.3.0",
+    "gulp-sass": "^3.1.0",
+    "jquery": "^3.2.1"
+  },
+  "dependencies": {
+    "font-awesome": "^4.7.0",
+    "wowjs": "^1.1.3"
+  }
+}

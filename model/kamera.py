@@ -25,3 +25,5 @@ def rekam_off():
 	cap.release()
 	out.release()
 	cap.destroyAllWindows()
+
+
