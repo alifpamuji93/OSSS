@@ -21,6 +21,8 @@ from model.lampu import lampu_on, lampu_off
 from flask import flash, redirect, request, session, abort
 import os
 
+from app import oss
+
 video_dir = 'static/video'
 
 
@@ -82,6 +84,14 @@ def gpio_off():
 	    lampu_off()
             return render_template('gpio_off.html')
 
+@app.route('/oss_on')
+def oss_on():
+    if not session.get('logged_in'):
+        return render_template('login.html')
+    else:
+	    oss()
+	    return render_template('oss_on.html')
+		
 @app.route('/video_streaming')
 def video_streaming():
     if not session.get('logged_in'):
