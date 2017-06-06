@@ -21,9 +21,13 @@ from model.lampu import lampu_on, lampu_off
 from flask import flash, redirect, request, session, abort
 import os
 
-from app import oss
-
 video_dir = 'static/video'
+
+#import lib app.py
+import RPi.GPIO as GPIO
+import cv2
+import time
+from datetime import datetime
 
 
 app = Flask(__name__)
@@ -89,7 +93,7 @@ def oss_on():
     if not session.get('logged_in'):
         return render_template('login.html')
     else:
-	    oss()
+	    VideoCamera.rekam_app()
 	    return render_template('oss_on.html')
 		
 @app.route('/video_streaming')
@@ -125,3 +129,7 @@ def logout():
 if __name__ == '__main__':
     app.secret_key = os.urandom(12)
     app.run(host='0.0.0.0',port=5000, debug=True)
+
+
+                
+    
