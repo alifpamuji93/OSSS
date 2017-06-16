@@ -20,15 +20,18 @@ class VideoCamera(object):
         instead.
         """
         self.video = cv2.VideoCapture(0)
+        self.ret = None
+        self.frame = None
+        self.delay = 200
         """
         If you decide to use video.mp4, you must have this file in the folder
         as the main.py.
        """
         # self.videomp4 = cv2.VideoCapture('video.mp4')        
        
-    def __del__(self):
-        self.video.release()
-        cv2.destroyAllWindows()
+    # def __del__(self):
+    #     self.video.release()
+    #     cv2.destroyAllWindows()
 
     def get_frame(self):
         success, image = self.video.read()
@@ -41,6 +44,8 @@ class VideoCamera(object):
     def read(self):
         success, image =self.video.read()
         return
+
+    
 
     def rekam(self):
         while self.ret and self.delay > 0:
