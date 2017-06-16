@@ -24,16 +24,11 @@ class VideoCamera(object):
         If you decide to use video.mp4, you must have this file in the folder
         as the main.py.
        """
-        # self.videomp4 = cv2.VideoCapture('video.mp4')
+        # self.videomp4 = cv2.VideoCapture('video.mp4')        
        
     def __del__(self):
         self.video.release()
         cv2.destroyAllWindows()
-
-    
-    def __del__(self):
-        self.video.release()
-        self.video.destroyAllWindows()
 
     def get_frame(self):
         success, image = self.video.read()
@@ -42,3 +37,20 @@ class VideoCamera(object):
         # video stream.
         ret, jpeg = cv2.imencode('.jpg', image)
         return jpeg.tobytes()
+
+    def read(self):
+        success, image =self.video.read()
+        return
+
+    def rekam(self):
+        while self.ret and self.delay > 0:
+            self.ret, self.frame = self.video.read()
+            # Our operations on the frame come here
+            gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+            # Display the resulting frame
+            cv2.imshow('frame',gray)
+            self.delay -= 1
+        return
+
+camera = VideoCamera()
+camera.rekam()
