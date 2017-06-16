@@ -18,7 +18,7 @@ from model.node import LocalNode, RemoteNode
 from model.web import fromtimestamp
 
 
-logger = getLogger('psdash.run')
+logger = getLogger('oss.run')
 
 
 class PsDashRunner(object):

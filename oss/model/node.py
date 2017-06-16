@@ -6,9 +6,9 @@ import psutil
 import socket
 import time
 import zerorpc
-from psdash.log import Logs
-from psdash.helpers import socket_families, socket_types
-from psdash.net import get_interface_addresses, NetIOCounters
+from log import Logs
+from helpers import socket_families, socket_types
+from net import get_interface_addresses, NetIOCounters
 
 
 logger = logging.getLogger("psdash.node")

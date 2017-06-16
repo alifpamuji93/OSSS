@@ -9,7 +9,7 @@ from flask import render_template, request, session, jsonify, Response, Blueprin
 from werkzeug.local import LocalProxy
 from model.helpers import socket_families, socket_types
 
-logger = logging.getLogger('psdash.web')
+logger = logging.getLogger('oss.web')
 webapp = Blueprint('psdash', __name__, static_folder='static')
 
 
