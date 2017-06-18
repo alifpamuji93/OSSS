@@ -11,7 +11,7 @@ from helpers import socket_families, socket_types
 from net import get_interface_addresses, NetIOCounters
 
 
-logger = logging.getLogger("psdash.node")
+logger = logging.getLogger("oss.node")
 
 
 class Node(object):
@@ -55,7 +55,7 @@ class RemoteNode(Node):
 class LocalNode(Node):
     def __init__(self):
         super(LocalNode, self).__init__()
-        self.name = "psDash"
+        self.name = "oss"
         self.net_io_counters = NetIOCounters()
         self.logs = Logs()
 

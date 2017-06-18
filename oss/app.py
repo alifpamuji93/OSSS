@@ -5,7 +5,7 @@ import time
 from datetime import datetime
 from model.lampu import lampu_on, lampu_off
 from model.kirim import mail
-from model.camera import VideoCamera as camera
+from model.camera import VideoCamera
 
 
 GPIO.setmode(GPIO.BCM)
