@@ -12,7 +12,7 @@ import urllib2
 from logging import getLogger
 from flask import Flask
 import zerorpc
-import __version__
+from model import __version__
 
 from model.node import LocalNode, RemoteNode
 from model.web import fromtimestamp
@@ -46,7 +46,7 @@ class PsDashRunner(object):
 
     def _get_args(cls, args):
         parser = argparse.ArgumentParser(
-            description='psdash %s - system information web dashboard' % __version__
+            description='oss %s - system information web dashboard' % __version__
         )
         parser.add_argument(
             '-l', '--log',
@@ -54,7 +54,7 @@ class PsDashRunner(object):
             dest='logs',
             default=None,
             metavar='path',
-            help='log files to make available for psdash. Patterns (e.g. /var/log/**/*.log) are supported. '
+            help='log files to make available for oss. Patterns (e.g. /var/log/**/*.log) are supported. '
                  'This option can be used multiple times.'
         )
         parser.add_argument(
@@ -92,7 +92,7 @@ class PsDashRunner(object):
             dest='register_to',
             default=None,
             metavar='host:port',
-            help='The psdash node running in web mode to register this agent to on start up. e.g 10.0.1.22:5000'
+            help='The oss node running in web mode to register this agent to on start up. e.g 10.0.1.22:5000'
         )
         parser.add_argument(
             '--register-as',
@@ -290,7 +290,7 @@ class PsDashRunner(object):
         self.server.serve_forever()
 
     def run(self):
-        logger.info('Starting psdash v%s' % __version__)
+        logger.info('Starting oss v%s' % __version__)
 
         self._setup_locale()
         self._setup_workers()
