@@ -10,7 +10,7 @@ from werkzeug.local import LocalProxy
 from model.helpers import socket_families, socket_types
 
 logger = logging.getLogger('oss.web')
-webapp = Blueprint('oss', __name__, static_folder='static')
+webapp = Blueprint('OSS', __name__, static_folder='static')
 
 
 def get_current_node():
@@ -61,7 +61,7 @@ def check_access():
     if not current_node:
         return 'Unknown oss node specified', 404
 
-    allowed_remote_addrs = current_app.config.get('oss_ALLOWED_REMOTE_ADDRESSES')
+    allowed_remote_addrs = current_app.config.get('OSS_ALLOWED_REMOTE_ADDRESSES')
     if allowed_remote_addrs:
         if request.remote_addr not in allowed_remote_addrs:
             current_app.logger.info(
@@ -71,8 +71,8 @@ def check_access():
             current_app.logger.debug('Allowed addresses: %s', allowed_remote_addrs)
             return 'Access denied', 401
 
-    username = current_app.config.get('oss_AUTH_USERNAME')
-    password = current_app.config.get('oss_AUTH_PASSWORD')
+    username = current_app.config.get('OSS_AUTH_USERNAME')
+    password = current_app.config.get('OSS_AUTH_PASSWORD')
     if username and password:
         auth = request.authorization
         if not auth or auth.username != username or auth.password != password:

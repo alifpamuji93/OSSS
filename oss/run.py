@@ -109,14 +109,14 @@ class OSSRunner(object):
         config = {}
         for k, v in vars(self._get_args(args)).iteritems():
             if v:
-                key = 'PSDASH_%s' % k.upper() if k != 'debug' else 'DEBUG'
+                key = 'OSS_%s' % k.upper() if k != 'debug' else 'DEBUG'
                 config[key] = v
         return config
 
     def _setup_nodes(self):
         self.add_node(LocalNode())
 
-        nodes = self.app.config.get('PSDASH_NODES', [])
+        nodes = self.app.config.get('OSS_NODES', [])
         logger.info("Registering %d nodes", len(nodes))
         for n in nodes:
             self.register_node(n['name'], n['host'], int(n['port']))
@@ -148,7 +148,7 @@ class OSSRunner(object):
     def _create_app(self, config=None):
         app = Flask(__name__)
         app.psdash = self
-        app.config.from_envvar('PSDASH_CONFIG', silent=True)
+        app.config.from_envvar('OSS_CONFIG', silent=True)
 
         if config and isinstance(config, dict):
             app.config.update(config)
@@ -160,8 +160,8 @@ class OSSRunner(object):
             app.secret_key = 'whatisthissourcery'
         app.add_template_filter(fromtimestamp)
 
-        from psdash.web import webapp
-        prefix = app.config.get('PSDASH_URL_PREFIX')
+        from model.web import webapp
+        prefix = app.config.get('OSS_URL_PREFIX')
         if prefix:
             prefix = '/' + prefix.strip('/')
         webapp.url_prefix = prefix
@@ -170,7 +170,7 @@ class OSSRunner(object):
         return app
 
     def _load_allowed_remote_addresses(self, app):
-        key = 'PSDASH_ALLOWED_REMOTE_ADDRESSES'
+        key = 'OSS_ALLOWED_REMOTE_ADDRESSES'
         addrs = app.config.get(key)
         if not addrs:
             return
@@ -179,8 +179,8 @@ class OSSRunner(object):
             app.config[key] = [a.strip() for a in addrs.split(',')]
 
     def _setup_logging(self):
-        level = self.app.config.get('PSDASH_LOG_LEVEL', logging.INFO) if not self.app.debug else logging.DEBUG
-        format = self.app.config.get('PSDASH_LOG_FORMAT', '%(levelname)s | %(name)s | %(message)s')
+        level = self.app.config.get('OSS_LOG_LEVEL', logging.INFO) if not self.app.debug else logging.DEBUG
+        format = self.app.config.get('OSS_LOG_FORMAT', '%(levelname)s | %(name)s | %(message)s')
 
         logging.basicConfig(
             level=level,
@@ -189,15 +189,15 @@ class OSSRunner(object):
         logging.getLogger('werkzeug').setLevel(logging.WARNING if not self.app.debug else logging.DEBUG)
         
     def _setup_workers(self):
-        net_io_interval = self.app.config.get('PSDASH_NET_IO_COUNTER_INTERVAL', self.DEFAULT_NET_IO_COUNTER_INTERVAL)
+        net_io_interval = self.app.config.get('OSS_NET_IO_COUNTER_INTERVAL', self.DEFAULT_NET_IO_COUNTER_INTERVAL)
         gevent.spawn_later(net_io_interval, self._net_io_counters_worker, net_io_interval)
 
-        if 'PSDASH_LOGS' in self.app.config:
+        if 'OSS_LOGS' in self.app.config:
             logs_interval = self.app.config.get('PSDASH_LOGS_INTERVAL', self.DEFAULT_LOG_INTERVAL)
             gevent.spawn_later(logs_interval, self._logs_worker, logs_interval)
 
-        if self.app.config.get('PSDASH_AGENT'):
-            register_interval = self.app.config.get('PSDASH_REGISTER_INTERVAL', self.DEFAULT_REGISTER_INTERVAL)
+        if self.app.config.get('OSS_AGENT'):
+            register_interval = self.app.config.get('OSS_REGISTER_INTERVAL', self.DEFAULT_REGISTER_INTERVAL)
             gevent.spawn_later(register_interval, self._register_agent_worker, register_interval)
 
     def _setup_locale(self):
@@ -206,13 +206,13 @@ class OSSRunner(object):
 
     def _setup_context(self):
         self.get_local_node().net_io_counters.update()
-        if 'PSDASH_LOGS' in self.app.config:
-            self.get_local_node().logs.add_patterns(self.app.config['PSDASH_LOGS'])
+        if 'OSS_LOGS' in self.app.config:
+            self.get_local_node().logs.add_patterns(self.app.config['OSS_LOGS'])
 
     def _logs_worker(self, sleep_interval):
         while True:
             logger.debug("Reloading logs...")
-            self.get_local_node().logs.add_patterns(self.app.config['PSDASH_LOGS'])
+            self.get_local_node().logs.add_patterns(self.app.config['OSS_LOGS'])
             gevent.sleep(sleep_interval)
 
     def _register_agent_worker(self, sleep_interval):
@@ -228,23 +228,23 @@ class OSSRunner(object):
             gevent.sleep(sleep_interval)
 
     def _register_agent(self):
-        register_name = self.app.config.get('PSDASH_REGISTER_AS')
+        register_name = self.app.config.get('OSS_REGISTER_AS')
         if not register_name:
             register_name = socket.gethostname()
 
         url_args = {
             'name': register_name,
-            'port': self.app.config.get('PSDASH_PORT', self.DEFAULT_PORT),
+            'port': self.app.config.get('OSS_PORT', self.DEFAULT_PORT),
         }
-        register_url = '%s/register?%s' % (self.app.config['PSDASH_REGISTER_TO'], urllib.urlencode(url_args))
+        register_url = '%s/register?%s' % (self.app.config['OSS_REGISTER_TO'], urllib.urlencode(url_args))
 
-        if 'PSDASH_AUTH_USERNAME' in self.app.config and 'PSDASH_AUTH_PASSWORD' in self.app.config:
+        if 'OSS_AUTH_USERNAME' in self.app.config and 'OSS_AUTH_PASSWORD' in self.app.config:
             auth_handler = urllib2.HTTPBasicAuthHandler()
             auth_handler.add_password(
-                realm='psDash login required',
+                realm='oss login required',
                 uri=register_url,
-                user=self.app.config['PSDASH_AUTH_USERNAME'],
-                passwd=self.app.config['PSDASH_AUTH_PASSWORD']
+                user=self.app.config['OSS_AUTH_USERNAME'],
+                passwd=self.app.config['OSS_AUTH_PASSWORD']
             )
             opener = urllib2.build_opener(auth_handler)
             urllib2.install_opener(opener)
@@ -257,13 +257,13 @@ class OSSRunner(object):
     def _run_rpc(self):
         logger.info("Starting RPC server (agent mode)")
 
-        if 'PSDASH_REGISTER_TO' in self.app.config:
+        if 'OSS_REGISTER_TO' in self.app.config:
             self._register_agent()
 
         service = self.get_local_node().get_service()
         self.server = zerorpc.Server(service)
-        self.server.bind('tcp://%s:%s' % (self.app.config.get('PSDASH_BIND_HOST', self.DEFAULT_BIND_HOST),
-                                          self.app.config.get('PSDASH_PORT', self.DEFAULT_PORT)))
+        self.server.bind('tcp://%s:%s' % (self.app.config.get('OSS_BIND_HOST', self.DEFAULT_BIND_HOST),
+                                          self.app.config.get('OSS_PORT', self.DEFAULT_PORT)))
         self.server.run()
 
     def _run_web(self):
@@ -271,15 +271,15 @@ class OSSRunner(object):
         log = 'default' if self.app.debug else None
 
         ssl_args = {}
-        if self.app.config.get('PSDASH_HTTPS_KEYFILE') and self.app.config.get('PSDASH_HTTPS_CERTFILE'):
+        if self.app.config.get('OSS_HTTPS_KEYFILE') and self.app.config.get('OSS_HTTPS_CERTFILE'):
             ssl_args = {
-                'keyfile': self.app.config.get('PSDASH_HTTPS_KEYFILE'),
-                'certfile': self.app.config.get('PSDASH_HTTPS_CERTFILE')
+                'keyfile': self.app.config.get('OSS_HTTPS_KEYFILE'),
+                'certfile': self.app.config.get('OSS_HTTPS_CERTFILE')
             }
 
         listen_to = (
-            self.app.config.get('PSDASH_BIND_HOST', self.DEFAULT_BIND_HOST),
-            self.app.config.get('PSDASH_PORT', self.DEFAULT_PORT)
+            self.app.config.get('OSS_BIND_HOST', self.DEFAULT_BIND_HOST),
+            self.app.config.get('OSS_PORT', self.DEFAULT_PORT)
         )
         self.server = WSGIServer(
             listen_to,
@@ -296,10 +296,10 @@ class OSSRunner(object):
         self._setup_workers()
 
         logger.info('Listening on %s:%s',
-                    self.app.config.get('PSDASH_BIND_HOST', self.DEFAULT_BIND_HOST),
-                    self.app.config.get('PSDASH_PORT', self.DEFAULT_PORT))
+                    self.app.config.get('OSS_BIND_HOST', self.DEFAULT_BIND_HOST),
+                    self.app.config.get('OSS_PORT', self.DEFAULT_PORT))
 
-        if self.app.config.get('PSDASH_AGENT'):
+        if self.app.config.get('OSS_AGENT'):
             return self._run_rpc()
         else:
             return self._run_web()
