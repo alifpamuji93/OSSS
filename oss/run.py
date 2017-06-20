@@ -12,10 +12,10 @@ import urllib2
 from logging import getLogger
 from flask import Flask
 import zerorpc
-from model import __version__
+from oss import __version__
 
-from model.node import LocalNode, RemoteNode
-from model.web import fromtimestamp
+from oss.model.node import LocalNode, RemoteNode
+from oss.model.web import fromtimestamp
 
 
 logger = getLogger('oss.run')

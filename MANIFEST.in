@@ -1,0 +1,2 @@
+recursive-include oss/static *
+recursive-include oss/templates *

@@ -80,6 +80,24 @@
                                     <span class="option-text">Logs</span>
                                 </a>
                             </li>
+							<li {% if page == "relays" %}class="active"{% endif %}>
+                                <a href="{{ url_for(".relays") }}">
+                                    <span class="glyphicon glyphicon-book"></span>
+                                    <span class="option-text">Relays</span>
+                                </a>
+                            </li>
+							<li {% if page == "camera" %}class="active"{% endif %}>
+                                <a href="{{ url_for(".camera") }}">
+                                    <span class="glyphicon glyphicon-book"></span>
+                                    <span class="option-text">video Streaming</span>
+                                </a>
+                            </li>
+							<li {% if page == "video_list" %}class="active"{% endif %}>
+                                <a href="{{ url_for(".video_list") }}">
+                                    <span class="glyphicon glyphicon-book"></span>
+                                    <span class="option-text">Video List</span>
+                                </a>
+                            </li>
                         </ul>
                     </div>
                     <div class="main-content">

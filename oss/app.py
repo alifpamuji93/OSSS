@@ -3,7 +3,7 @@ import RPi.GPIO as GPIO
 import cv2
 import time
 from datetime import datetime
-from model.lampu import lampu_on, lampu_off
+from model.lampu import relay
 from model.kirim import mail
 from model.camera import VideoCamera
 
@@ -15,6 +15,8 @@ GPIO.setup(pirPin, GPIO.IN)
 cap = cv2.VideoCapture(0)
 
 fps = 20
+
+lampu = relay()
 
 filename = datetime.now().strftime("static/video/%Y-%m-%d_%H.%M.%S.avi")
 codec = cv2.VideoWriter_fourcc(*'XVID')
@@ -32,7 +34,7 @@ while True:
         while ret and delay > 0:
             out.write(frame)
             ret, frame = cap.read()
-            lampu_on()
+            lampu.on()
             delay -= 1
 
 
