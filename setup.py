@@ -1,11 +1,12 @@
 # coding=utf-8
 
+from oss import __version__
 from setuptools import setup, find_packages
 
 setup(
     name='oss',
-    version='0.1.1-beta',
-    description='One Shock security system and Linux system information web dashboard',
+    version=__version__,
+    description='One Shock Security System and Linux system information web dashboard',
     long_description='One shock Security System  is a system information for  web dashboard for linux using data mainly served by flask and psutil',
     classifiers=[
         'Topic :: System :: Monitoring',
@@ -17,8 +18,8 @@ setup(
         'Intended Audience :: Developers',
         'Intended Audience :: System Administrators'
     ],
-    keywords='Raspberry Pi, smart home, secuirity, linux, web, dashboard',
-    author='Nur Wachid',
+    keywords='Raspberry Pi, smart home, security, Monitoring, linux, web, dashboard',
+    author='Nur Wachid, Alif Pamuji',
     author_email='wachid@outlook.com',
     url='https://github.com/alifpamji93/OSSS',
     license='MIT',

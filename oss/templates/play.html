@@ -1,6 +1,8 @@
-{% extends "base_template.html" %}
+{% if not is_xhr|default(false) %}{% extends "base.html" %}{% endif -%}
 {% block content %}
-			
+
+<div id="play-video">
+<div class="box">
 <h1>Video OSSS</h1>
 <br/>
 
@@ -8,5 +10,6 @@
   <source src="/static/video/{{ filename }}" type="video/mp4">
 Your browser does not support the video tag.
 </video>
-
+</div>
+</div>
 {% endblock %}

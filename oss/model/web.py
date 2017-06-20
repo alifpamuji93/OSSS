@@ -329,7 +329,8 @@ def video_list():
 def video_file(filename):
     return render_template('play.html',
                         title = 'play',
-                        filename = filename)
+                        filename = filename,
+                           is_xhr=request.is_xhr)
 
 
 @webapp.route('/log/search')
