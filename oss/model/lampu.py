@@ -12,14 +12,3 @@ def lampu_on():
 
 def lampu_off():
     GPIO.cleanup(relayPin)
-
-
-class relay(object):
-    def __init__():
-        self.relayPin = 17
-
-    def on(self):
-        return GPIO.setup(self.relayPin, GPIO.OUT)
-
-    def off(self):
-        return GPIO.cleanup(self.relayPin)
