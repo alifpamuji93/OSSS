@@ -1,9 +1,11 @@
 {% extends "base_template.html" %}
 {% block content %}
 			
-<h1>One Shock Security System</h1>
-						
+<h1>OSSS App. - Kontrol Lampu</h1>		
 <br/>
+<h3>Pilih 'TURN ON' untuk menyalakan lampu, atau 'TURN OFF' untuk mematikan lampu!</h3>
+<br/>
+
 <ul id="button_kontrol">
 	<li><a href="{{ url_for('gpio_on') }}">TURN ON</a></li>
 	<li><a href="{{ url_for('gpio_off') }}">TURN OFF</a></li>
@@ -11,6 +13,6 @@
 
 <br/>
 <br/>
-<h2>GPIO Aktif</h2>
+<h3>Lampu Menyala...</h3>
 
 {% endblock %}
