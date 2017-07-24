@@ -1,6 +1,8 @@
-import profile
+from gpiozero import MotionSensor
 
-pr = profile.Profile()
-
-for i in range(5):
-    print pr.calibrate(10000)
+pir = MotionSensor(18)
+while True:
+    if pir.motion_detected:
+        print("Motion detected!")
+    else:
+    	print("no detection")
