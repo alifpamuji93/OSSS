@@ -7,11 +7,15 @@ import uuid
 import locale
 from flask import render_template, request, session, jsonify, Response, Blueprint, current_app, g
 from werkzeug.local import LocalProxy
-from model.helpers import socket_families, socket_types
+from oss.model.helpers import socket_families, socket_types
+from oss.model.camera import VideoCamera
+from oss import __version__
+import os
 
 logger = logging.getLogger('oss.web')
 webapp = Blueprint('OSS', __name__, static_folder='static')
 
+video_dir = 'static/video'
 
 def get_current_node():
     return current_app.oss.get_node(g.node)
@@ -40,10 +44,13 @@ def inject_header_data():
     sysinfo = current_service.get_sysinfo()
     uptime = timedelta(seconds=sysinfo['uptime'])
     uptime = str(uptime).split('.')[0]
+    version = __version__
+    # name = __name__
     return {
         'os': sysinfo['os'].decode('utf-8'),
         'hostname': sysinfo['hostname'].decode('utf-8'),
-        'uptime': uptime
+        'uptime': uptime,
+        'version': version
     }
 
 @webapp.url_defaults
@@ -304,6 +311,44 @@ def view_log():
         return content
 
     return render_template('log.html', content=content, filename=filename)
+
+
+@webapp.route('/relays')
+def relays():
+    return render_template()
+
+@webapp.route('/camera')
+def video_streaming():
+	    return render_template('video_streaming.html')
+
+def gen(camera):
+    while True:
+        frame = camera.get_frame()
+        yield (b'--frame\r\n'
+               b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n\r\n')
+
+@webapp.route('/video_feed')
+def video_feed():
+    return Response(gen(VideoCamera()),
+                    mimetype='multipart/x-mixed-replace; boundary=frame')
+
+
+@webapp.route('/video_list')
+def video_list():
+    video_files = [f for f in os.listdir(video_dir) if f.endswith('mp4')]
+    video_files_number = len(video_files)
+    return render_template("daftar_video.html",
+        title = 'Video list',
+        video_files_number = video_files_number,
+        video_files = video_files,
+        is_xhr=request.is_xhr)
+
+@webapp.route('/play/<filename>.html')
+def video_file(filename):
+    return render_template('play.html',
+                        title = 'play',
+                        filename = filename,
+                           is_xhr=request.is_xhr)
 
 
 @webapp.route('/log/search')

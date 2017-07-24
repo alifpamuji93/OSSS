@@ -12,10 +12,10 @@ import urllib2
 from logging import getLogger
 from flask import Flask
 import zerorpc
-from model import __version__
+from oss import __version__
 
-from model.node import LocalNode, RemoteNode
-from model.web import fromtimestamp
+from oss.model.node import LocalNode, RemoteNode
+from oss.model.web import fromtimestamp
 
 
 logger = getLogger('oss.run')
@@ -46,7 +46,7 @@ class OSSRunner(object):
 
     def _get_args(cls, args):
         parser = argparse.ArgumentParser(
-            description='oss %s - system information web dashboard' % __version__
+            description='oss %s - One Shock Security System' % __version__
         )
         parser.add_argument(
             '-l', '--log',
@@ -147,7 +147,7 @@ class OSSRunner(object):
 
     def _create_app(self, config=None):
         app = Flask(__name__)
-        app.psdash = self
+        app.oss = self
         app.config.from_envvar('OSS_CONFIG', silent=True)
 
         if config and isinstance(config, dict):
@@ -193,7 +193,7 @@ class OSSRunner(object):
         gevent.spawn_later(net_io_interval, self._net_io_counters_worker, net_io_interval)
 
         if 'OSS_LOGS' in self.app.config:
-            logs_interval = self.app.config.get('PSDASH_LOGS_INTERVAL', self.DEFAULT_LOG_INTERVAL)
+            logs_interval = self.app.config.get('OSS_LOGS_INTERVAL', self.DEFAULT_LOG_INTERVAL)
             gevent.spawn_later(logs_interval, self._logs_worker, logs_interval)
 
         if self.app.config.get('OSS_AGENT'):

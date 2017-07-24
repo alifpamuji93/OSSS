@@ -2,6 +2,7 @@ import RPi.GPIO as GPIO
      
 GPIO.setmode(GPIO.BCM)
 relayPin = 17
+GPIO.setwarnings(False)
 
 def lampu_on():
     print ("Lampu menyala")
@@ -11,4 +12,3 @@ def lampu_on():
 
 def lampu_off():
     GPIO.cleanup(relayPin)
-
