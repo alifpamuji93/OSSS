@@ -37,11 +37,11 @@ sudo apt-get install -y libtbb-dev libeigen3-dev
 
 # Java:
 # if want support java ant
-sudo apt-get install -y ant default-jdk
+# sudo apt-get install -y ant default-jdk
 
 # Documentation:
 # install documentation of openCV
-sudo apt-get install -y doxygen
+# sudo apt-get install -y doxygen
 
 
 # 3. INSTALL THE LIBRARY (I USE '3.2.0' FOR THE LAST STABLE VERSION)
@@ -61,4 +61,3 @@ cmake -D CMAKE_BUILD_TYPE=RELEASE -D CMAKE_INSTALL_PREFIX=/usr/local ..
 make -j4
 sudo make install
 sudo ldconfig
-
